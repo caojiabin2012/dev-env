@@ -162,11 +162,18 @@ jobs:
             mac_url="${BASE_URL}/$(release_filename "$MAC_TAR")"
           fi
 
+          NOTES_FILE="release-notes/v${VERSION}.md"
+          if [ ! -f "$NOTES_FILE" ]; then
+            echo "Release notes not found: $NOTES_FILE" >&2
+            exit 1
+          fi
+          NOTES_JSON=$(jq -Rs . "$NOTES_FILE")
+
           tmp_json=$(mktemp)
           {
             echo '{'
             echo "  \"version\": \"${VERSION}\","
-            echo "  \"notes\": \"See https://github.com/${REPO}/releases/tag/${TAG} for details.\","
+            echo "  \"notes\": ${NOTES_JSON},"
             echo "  \"pub_date\": \"${PUB_DATE}\","
             echo '  "platforms": {'
             first=1
