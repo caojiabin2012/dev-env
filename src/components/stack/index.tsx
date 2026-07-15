@@ -54,7 +54,6 @@ import { isTauriEnv } from '@/lib/tauri'
 
 const POLL_INTERVAL_MS = 5000
 const METRICS_INTERVAL_MS = 2000
-const CPU_HISTORY_LEN = 24
 
 function bootAutostartEqual(a: Record<string, boolean>, b: Record<string, boolean>): boolean {
   const keys = new Set([...Object.keys(a), ...Object.keys(b)])
@@ -276,7 +275,6 @@ export function StackPanel() {
   const [locale, setLocaleState] = useState<LocaleId>(getLocale)
   const [state, setState] = useState<StackState | null>(null)
   const [metrics, setMetrics] = useState<SystemMetrics | null>(null)
-  const [cpuHistory, setCpuHistory] = useState<number[]>([])
   const [dashSearch, setDashSearch] = useState('')
   const [installRoot, setInstallRootInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -348,7 +346,6 @@ export function StackPanel() {
     try {
       const m = await getSystemMetrics()
       setMetrics(m)
-      setCpuHistory((prev) => [...prev, m.cpu_percent ?? 0].slice(-CPU_HISTORY_LEN))
     } catch (e) { console.error(e) }
   }, [])
 
@@ -535,7 +532,6 @@ export function StackPanel() {
             state={state}
             loading={loading}
             metrics={metrics}
-            cpuHistory={cpuHistory}
             search={dashSearch}
             bootAutostart={state.settings?.boot_autostart ?? bootAutostart}
             dashboardCards={state.settings?.dashboard_cards ?? []}

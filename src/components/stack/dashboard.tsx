@@ -1,6 +1,6 @@
 import { memo, useMemo, useState } from 'react'
 import type { ComponentView, StackState, SystemMetrics } from '@/lib/stack-api'
-import { IconCheck, IconConfig, IconLog, IconPlay, IconRestart, IconSearch, IconStop, SoftwareIcon } from './icons'
+import { IconConfig, IconLog, IconPlay, IconRestart, IconSearch, IconStop, SoftwareIcon } from './icons'
 import { PKG_META } from './icons'
 import { isCliTool, isManualManagedComponent } from './package-model'
 import {
@@ -306,7 +306,6 @@ export function DashboardView({
   state,
   loading,
   metrics,
-  cpuHistory,
   search,
   bootAutostart,
   dashboardCards,
@@ -324,7 +323,6 @@ export function DashboardView({
   state: StackState
   loading: boolean
   metrics: SystemMetrics | null
-  cpuHistory: number[]
   search: string
   bootAutostart: Record<string, boolean>
   dashboardCards: string[]

@@ -1,59 +1,12 @@
 import { memo } from 'react'
 import type { DownloadProgress } from '@/lib/stack-api'
-import { IconConfig, IconDownload, IconInstalled, IconPin, IconRefresh, IconTrash, SoftwareIcon } from './icons'
+import { IconDownload, IconPin, IconRefresh, IconTrash, SoftwareIcon } from './icons'
 import type { VersionRow } from './package-model'
 import { isCliTool, isManualManagedComponent, supportsPathEnv, supportsPortConfig } from './package-model'
 import { PortField } from './ui'
 
 const GRID_COLS =
   'grid-cols-[28px_minmax(100px,1.2fr)_minmax(65px,0.55fr)_minmax(48px,0.4fr)_minmax(70px,0.6fr)_48px_minmax(80px,0.55fr)_80px]'
-
-function StatusCell({ row, downloading, installing }: { row: VersionRow; downloading: boolean; installing: boolean }) {
-  if (downloading) {
-    return (
-      <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--sb-accent)]">
-        <IconDownload size={14} />
-        下载中
-      </span>
-    )
-  }
-  if (installing) {
-    return (
-      <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--sb-accent)]">
-        <span className="h-3 w-3 border-2 border-[var(--sb-accent)] border-t-transparent rounded-full animate-spin" />
-        安装中
-      </span>
-    )
-  }
-  if (!row.installed) {
-    return <span className="text-[12px] text-[var(--sb-muted)]">—</span>
-  }
-  if (isCliTool(row.componentId)) {
-    return (
-      <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-emerald-600">
-        <IconInstalled size={15} className="text-emerald-500" />
-        已安装
-      </span>
-    )
-  }
-  if (row.status === 'running') {
-    return (
-      <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-emerald-600">
-        <IconInstalled size={15} className="text-emerald-500" />
-        运行中
-      </span>
-    )
-  }
-  if (row.status === 'stopped') {
-    return (
-      <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-emerald-600">
-        <IconInstalled size={15} className="text-emerald-500" />
-        已安装
-      </span>
-    )
-  }
-  return <span className="text-[12px] text-amber-600">异常</span>
-}
 
 const PackageIcon = memo(function PackageIcon({ id }: { id: string }) {
   return (
@@ -72,7 +25,6 @@ export const VersionRowCard = memo(function VersionRowCard({
   onUninstall,
   onStart,
   onStop,
-  onOpenConfig,
   onSetVersion,
   onTogglePathEnv,
   portValue,
@@ -86,7 +38,6 @@ export const VersionRowCard = memo(function VersionRowCard({
   onUninstall: () => void
   onStart: () => void
   onStop: () => void
-  onOpenConfig: () => void
   onSetVersion: () => void
   onTogglePathEnv: () => void
   portValue: number
@@ -320,7 +271,6 @@ export function PackageVersionList({
                   onUninstall={() => handlers.onUninstall(row)}
                   onStart={() => handlers.onStart(row)}
                   onStop={() => handlers.onStop(row)}
-                  onOpenConfig={() => handlers.onOpenConfig(row)}
                   onSetVersion={() => handlers.onSetVersion(row)}
                   onTogglePathEnv={() => handlers.onTogglePathEnv(row)}
                   portValue={getPort(row)}

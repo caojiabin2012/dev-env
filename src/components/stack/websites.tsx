@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { AddSiteParams, SiteRuntimeId, StackState, UpdateSiteParams, WebSiteView } from '@/lib/stack-api'
+import type { AddSiteParams, ComponentView, SiteRuntimeId, StackState, UpdateSiteParams, WebSiteView } from '@/lib/stack-api'
 import { SITE_RUNTIME_OPTIONS } from '@/lib/stack-api'
 import { IconEdit, IconExternal, IconFolder, IconGlobe, IconPin, IconPlay, IconStop, IconTrash, SoftwareIcon } from './icons'
 import {
   installedWebServers,
-  webServerOptionLabel,
   webServerVersions,
   WEB_SERVER_OPTIONS,
   type WebServerId,
@@ -15,7 +14,7 @@ import {
   versionsForRuntime,
   isProcessRuntime,
 } from './site-runtime'
-import { Btn, StatusPill } from './ui'
+import { Btn } from './ui'
 
 /* ====== Site Card ====== */
 
@@ -34,7 +33,7 @@ function SiteCard({
   index: number
   site: WebSiteView
   loading: boolean
-  installedWebs: { id: string; port?: number }[]
+  installedWebs: Pick<ComponentView, 'id' | 'port'>[]
   onStartStop: () => void
   onEdit: () => void
   onSetDefault: () => void
@@ -200,7 +199,7 @@ function SiteForm({
   name: string; hostname: string; root: string
   runtime: SiteRuntimeId; runtimeVersionId: string
   webServer: WebServerId; webServerVersionId: string
-  installedWebs: { id: string; port?: number }[]
+  installedWebs: Pick<ComponentView, 'id' | 'port'>[]
   versionOptions: { id: string; label: string }[]
   wsVersionOptions: { id: string; label: string }[]
   loading: boolean
@@ -313,7 +312,7 @@ export function WebsitesView({
   state: StackState
   loading: boolean
   onAdd: (params: AddSiteParams) => Promise<void>
-  onDelete: (siteId: string) => Promise<void>
+  onDelete: (siteId: string) => void | Promise<void>
   onSetDefault: (siteId: string) => Promise<void>
   onOpen: (siteId: string) => void
   onOpenRoot: (siteId: string) => void
