@@ -1,6 +1,6 @@
 [package]
 name = "dev-env"
-version = "0.0.2"
+version = "0.0.3"
 description = "Dev Env - 本地开发环境安装"
 authors = ["cao.jiabin"]
 license = ""
