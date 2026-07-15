@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+  --color-card: #ffffff;
+  --color-card-foreground: #0a0a0a;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #0a0a0a;
+  /* 品牌色：主按钮、选中态、关键数字 */
+  --color-primary: #2563eb;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f5f5f5;
+  --color-secondary-foreground: #171717;
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #737373;
+  --color-accent: #f5f5f5;
+  --color-accent-foreground: #171717;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fafafa;
+  --color-border: #e5e5e5;
+  --color-input: #e5e5e5;
+  --color-ring: #0a0a0a;
+  --radius: 0.625rem;
+}
+
+.dark {
+  --color-background: #0a0a0a;
+  --color-foreground: #fafafa;
+  --color-card: #0a0a0a;
+  --color-card-foreground: #fafafa;
+  --color-popover: #0a0a0a;
+  --color-popover-foreground: #fafafa;
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #262626;
+  --color-secondary-foreground: #fafafa;
+  --color-muted: #262626;
+  --color-muted-foreground: #a3a3a3;
+  --color-accent: #262626;
+  --color-accent-foreground: #fafafa;
+  --color-destructive: #7f1d1d;
+  --color-destructive-foreground: #fafafa;
+  --color-border: #262626;
+  --color-input: #262626;
+  --color-ring: #d4d4d4;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    margin: 0;
+  }
+}
+
+/* ServBay 风格三栏布局 */
+.sb-app {
+  --sb-accent: #3b7cff;
+  --sb-accent-soft: #eef4ff;
+  --sb-main-bg: #eceef2;
+  --sb-primary-bg: #f7f8fa;
+  --sb-category-bg: #f0f1f4;
+  --sb-sidebar-bg: #f7f8fa;
+  --sb-panel: #ffffff;
+  --sb-border: #e4e6eb;
+  --sb-hover: #f2f3f6;
+  --sb-text: #1a1d24;
+  --sb-text-secondary: #525866;
+  --sb-muted: #9aa0ad;
+}
+
+.dark .sb-app {
+  --sb-accent: #60a5fa;
+  --sb-accent-soft: rgba(59, 130, 246, 0.12);
+  --sb-main-bg: #0f1117;
+  --sb-primary-bg: #13161d;
+  --sb-category-bg: #161a22;
+  --sb-sidebar-bg: #13161d;
+  --sb-panel: #1c212b;
+  --sb-border: #2a3140;
+  --sb-hover: #222938;
+  --sb-text: #f3f4f6;
+  --sb-text-secondary: #9ca3af;
+  --sb-muted: #6b7280;
+}
+
+.sb-row-card {
+  background: var(--sb-panel);
+  border: 1px solid var(--sb-border);
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+}
+
+.sb-package-row {
+  /* rows inside card — no extra border needed when using sb-row-card wrapper */
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}

@@ -1,0 +1,65 @@
+{
+  "primaryNav": [
+    { "id": "dashboard", "labelKey": "nav.dashboard", "icon": "dashboard" },
+    { "id": "websites", "labelKey": "nav.websites", "icon": "globe" }
+  ],
+  "sections": [
+    {
+      "id": "web",
+      "titleKey": "section.web",
+      "items": [
+        { "id": "nginx", "labelKey": "pkg.nginx" },
+        { "id": "openresty", "labelKey": "pkg.openresty" },
+        { "id": "caddy", "labelKey": "pkg.caddy" }
+      ]
+    },
+    {
+      "id": "runtime",
+      "titleKey": "section.runtime",
+      "items": [
+        { "id": "php", "labelKey": "pkg.php" },
+        { "id": "python", "labelKey": "pkg.python" },
+        { "id": "go", "labelKey": "pkg.go" },
+        { "id": "java", "labelKey": "pkg.java" },
+        { "id": "node", "labelKey": "pkg.node" }
+      ]
+    },
+    {
+      "id": "database",
+      "titleKey": "section.database",
+      "items": [
+        { "id": "mysql", "labelKey": "pkg.mysql" },
+        { "id": "mariadb", "labelKey": "pkg.mariadb" }
+      ]
+    },
+    {
+      "id": "cache",
+      "titleKey": "section.cache",
+      "items": [
+        { "id": "redis", "labelKey": "pkg.redis" },
+        { "id": "memcache", "labelKey": "pkg.memcache" }
+      ]
+    },
+    {
+      "id": "mq",
+      "titleKey": "section.mq",
+      "items": [
+        { "id": "rabbitmq", "labelKey": "pkg.rabbitmq" },
+        { "id": "rocketmq", "labelKey": "pkg.rocketmq" },
+        { "id": "kafka", "labelKey": "pkg.kafka" }
+      ]
+    },
+    {
+      "id": "tools",
+      "titleKey": "section.tools",
+      "items": [
+        { "id": "composer", "labelKey": "pkg.composer" },
+        { "id": "pip", "labelKey": "pkg.pip" },
+        { "id": "npm", "labelKey": "pkg.npm" }
+      ]
+    }
+  ],
+  "footerNav": [
+    { "id": "settings", "labelKey": "nav.settings", "icon": "settings" }
+  ]
+}
