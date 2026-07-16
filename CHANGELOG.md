@@ -1,4 +1,25 @@
-# Dev Tools 更新日志
+# Dev Env 更新日志
+
+## 2026-07-15 更新（v0.0.3）
+
+### 发版与打包
+
+- GitHub Actions 升级到 Node 24 兼容的 action 版本
+- `release.yml` 改为从 `release-notes/vX.Y.Z.md` 生成 `latest.json`
+- 修复 artifact action 的 Node 20 runtime 弃用问题
+- 修复 macOS / Linux 打包失败：将 `winreg` 限定为 Windows 目标依赖
+
+### 应用外观
+
+- 侧栏结构与颜色对齐 `dev-tools`
+- Windows 标题栏新增主题同步，避免出现纯黑原生顶栏
+
+### 环境管理
+
+- Java 运行时切换到 BellSoft Liberica，并补充 JDK 1.8
+- RocketMQ 支持 UI 一键启动 / 停止 NameServer 与 Broker
+- PHP 下载源修正为 Windows 官方 archives 地址
+- 多版本语义统一为“安装多个、启用一个、运行一个”
 
 ## 2026-07-02 更新（v0.4.7）
 
