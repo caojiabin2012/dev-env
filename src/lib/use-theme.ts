@@ -19,7 +19,18 @@ function getStoredTheme(): Theme {
 
 function applyTheme(theme: Theme) {
   const resolved = theme === 'system' ? getSystemTheme() : theme;
-  document.documentElement.classList.toggle('dark', resolved === 'dark');
+  const dark = resolved === 'dark';
+  document.documentElement.classList.toggle('dark', dark);
+  void syncWindowTheme(dark);
+}
+
+async function syncWindowTheme(dark: boolean) {
+  try {
+    const { invoke } = await import('@tauri-apps/api/core');
+    await invoke('sync_window_theme', { dark });
+  } catch {
+    // 浏览器预览等非 Tauri 环境
+  }
 }
 
 export function useTheme() {

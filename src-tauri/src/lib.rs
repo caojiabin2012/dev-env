@@ -2,6 +2,7 @@ mod app_paths;
 mod diagnostics;
 mod stack;
 mod system;
+mod window_chrome;
 
 use std::time::Duration;
 use tauri::Manager;
@@ -50,6 +51,7 @@ pub fn run() {
         })
         .invoke_handler(tauri::generate_handler![
             diagnostics::record_client_error,
+            window_chrome::sync_window_theme,
             stack::stack_get_state,
             stack::stack_set_install_root,
             stack::stack_pick_install_root,
